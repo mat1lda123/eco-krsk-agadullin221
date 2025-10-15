@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭКО КРСК - Экологические технологии</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        :root { --primary-green: #2e7d32; --dark-green: #1b5e20; --light-green: #4caf50; --accent-orange: #ff6b35; }
+        body { background: linear-gradient(135deg, #0c2c1a 0%, #1a472a 50%, #2e7d32 100%); color: #333; line-height: 1.6; overflow-x: hidden; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: rgba(27, 94, 32, 0.95); color: white; padding: 1rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { width: 60px; height: 60px; background: linear-gradient(45deg, #4caf50, #8bc34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; border: 3px solid white; box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); }
+        .logo { font-size: 2rem; font-weight: bold; background: linear-gradient(45deg, #fff, #a5d6a7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .contact-info { text-align: right; }
+        .contact-info p { margin: 5px 0; font-size: 1.1rem; }
+        nav { background: rgba(21, 71, 26, 0.95); padding: 1rem 0; backdrop-filter: blur(10px); }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; padding: 10px 20px; border-radius: 25px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        nav ul li a::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
+        nav ul li a:hover::before { left: 100%; }
+        nav ul li a:hover { background: rgba(76, 175, 80, 0.3); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); transform: translateY(-2px); }
+        nav ul li a.active { background: rgba(76, 175, 80, 0.5); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); }
+        .banner { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; color: white; text-align: center; padding: 150px 20px; margin-bottom: 40px; position: relative; overflow: hidden; }
+        .banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: linear-gradient(transparent, #0c2c1a); }
+        .banner h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); background: linear-gradient(45deg, #4caf50, #8bc34a, #cddc39); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: glow 2s ease-in-out infinite alternate; }
+        @keyframes glow { from { text-shadow: 0 0 10px rgba(76, 175, 80, 0.5); } to { text-shadow: 0 0 20px rgba(76, 175, 80, 0.8), 0 0 30px rgba(76, 175, 80, 0.6); } }
+        .banner p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 30px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .btn { background: linear-gradient(45deg, #4caf50, #8bc34a); color: white; padding: 15px 35px; border: none; border-radius: 30px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: all 0.3s ease; text-decoration: none; display: inline-block; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); position: relative; overflow: hidden; }
+        .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s; }
+        .btn:hover::before { left: 100%; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6); }
+        .btn-secondary { background: linear-gradient(45deg, #ff6b35, #ff8e53); }
+        .btn-secondary:hover { box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6); }
+        .main-content { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin: 40px 0; }
+        .about-section, .services-section, .question-section, .page-content { background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease; }
+        .about-section:hover, .services-section:hover, .question-section:hover, .page-content:hover { transform: translateY(-5px); }
+        .about-section h2, .services-section h2, .question-section h2, .page-content h2 { color: #2e7d32; margin-bottom: 25px; border-bottom: 3px solid #4caf50; padding-bottom: 15px; font-size: 2rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .service-card { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); padding: 25px; border-radius: 15px; border-left: 5px solid #4caf50; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent); transform: translateX(-100%); transition: transform 0.6s; }
+        .service-card:hover::before { transform: translateX(100%); }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .service-card h3 { color: #2e7d32; margin-bottom: 15px; font-size: 1.3rem; }
+        .question-form { display: flex; flex-direction: column; gap: 20px; }
+        .question-form input, .question-form textarea { padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9); }
+        .question-form input:focus, .question-form textarea:focus { outline: none; border-color: #4caf50; box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); transform: scale(1.02); }
+        .question-form textarea { height: 120px; resize: vertical; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
+        .feature-card { background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 30px; border-radius: 15px; text-align: center; border-top: 5px solid #2196f3; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+        .map-placeholder { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); height: 300px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #2e7d32; }
+        footer { background: rgba(13, 43, 21, 0.95); color: white; text-align: center; padding: 50px 0 30px; margin-top: 80px; position: relative; }
+        footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #4caf50, #8bc34a, #cddc39, #8bc34a, #4caf50); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; margin-bottom: 30px; }
+        .footer-logo h3 { font-size: 2rem; background: linear-gradient(45deg, #4caf50, #8bc34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .copyright { margin-top: 30px; font-size: 0.9rem; opacity: 0.8; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; }
+        .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .floating-element { position: absolute; background: rgba(76, 175, 80, 0.1); border-radius: 50%; animation: float 20s infinite linear; }
+        @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; } }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .main-content { grid-template-columns: 1fr; } .header-top { flex-direction: column; text-align: center; gap: 20px; } .contact-info { text-align: center; } nav ul { flex-direction: column; gap: 15px; } .banner h1 { font-size: 2.5rem; } .banner p { font-size: 1.1rem; } .footer-content { flex-direction: column; } .cta-buttons { flex-direction: column; align-items: center; } .btn { width: 100%; max-width: 300px; } .contact-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <div class="logo-img">ЭК</div>
+                    <div class="logo">ЭКО КРСК</div>
+                </div>
+                <div class="contact-info">
+                    <p>📞 8 (999) 999-99-99</p>
+                    <p>✉️ eco-krsk@example.ru</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
+                <li><a href="#" class="nav-link" data-page="services">Услуги компании</a></li>
+                <li><a href="#" class="nav-link" data-page="expertise">Тех. Экспертиза</a></li>
+                <li><a href="#" class="nav-link" data-page="about">О компании</a></li>
+                <li><a href="#" class="nav-link" data-page="contacts">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="home" class="page active">
+        <section class="banner">
+            <div class="container">
+                <h1>ЭКО КРСК & Инженерные решения</h1>
+                <p>Передовые экологические технологии и инжиниринг для устойчивого будущего. Инновации, которые меняют мир к лучшему.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn nav-link" data-page="services">Наши услуги</a>
+                    <a href="#" class="btn btn-secondary nav-link" data-page="contacts">Связаться с нами</a>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <div class="main-content">
+                <div>
+                    <section class="about-section">
+                        <h2>О компании</h2>
+                        <p>Компания "ЭКО КРСК" - это ведущий поставщик инновационных экологических технологий и инженерных решений премиум-класса. Мы создаем будущее, где технологии и природа существуют в гармонии.</p>
+                        <p>Наш подход сочетает передовые научные разработки с многолетним практическим опытом, обеспечивая максимальную эффективность и устойчивость вашего бизнеса.</p>
+                        <a href="#" class="btn nav-link" data-page="about" style="margin-top: 20px;">Узнать больше</a>
+                    </section>
+                    <section class="services-section">
+                        <h2>Наши услуги</h2>
+                        <div class="services-grid">
+                            <div class="service-card"><h3>🌿 Экологическая экспертиза</h3><p>Комплексная оценка и мониторинг экологического состояния объектов любой сложности</p></div>
+                            <div class="service-card"><h3>🔧 Технический аудит</h3><p>Глубокий анализ и оптимизация технологических процессов для максимальной эффективности</p></div>
+                            <div class="service-card"><h3>⚡ Унификация процессов</h3><p>Стандартизация и автоматизация экологических процедур и методик</p></div>
+                            <div class="service-card"><h3>💡 Консультации</h3><p>Экспертные консультации по всем вопросам экологии и устойчивого развития</p></div>
+                        </div>
+                        <a href="#" class="btn nav-link" data-page="services" style="margin-top: 25px; width: 100%;">Все услуги</a>
+                    </section>
+                </div>
+                <div>
+                    <section class="question-section">
+                        <h2>💬 Задать вопрос</h2>
+                        <form class="question-form" id="questionForm">
+                            <input type="text" placeholder="Ваше имя" required>
+                            <input type="email" placeholder="Ваш email" required>
+                            <input type="tel" placeholder="Ваш телефон">
+                            <textarea placeholder="Ваш вопрос" required></textarea>
+                            <button type="submit" class="btn">Отправить вопрос</button>
+                        </form>
+                    </section>
+                    <section class="about-section" style="margin-top: 30px;">
+                        <h2>🔗 Быстрые ссылки</h2>
+                        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                            <a href="#" class="btn nav-link" data-page="expertise" style="text-align: center;">Техническая экспертиза</a>
+                            <a href="#" class="btn btn-secondary nav-link" data-page="services" style="text-align: center;">Наши проекты</a>
+                            <a href="#" class="btn nav-link" data-page="about" style="text-align: center;">Сертификаты</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="services" class="page">
+        <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1569163139394-de44cb54d0ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+            <div class="container">
+                <h1>Наши услуги</h1>
+                <p>Комплексные экологические решения для бизнеса и промышленности</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="page-content">
+                <div class="page-header">
+                    <h2>Профессиональные экологические услуги</h2>
+                    <p>Мы предлагаем полный спектр услуг в области экологического консалтинга и инжиниринга</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card"><h3>🌍 Экологический мониторинг</h3><p>Непрерывный контроль состояния окружающей среды с использованием современных технологий</p><ul style="text-align: left; margin-top: 15px;"><li>Атмосферный воздух</li><li>Водные ресурсы</li><li>Почвенный покров</li><li>Шумовое загрязнение</li></ul></div>
+                    <div class="service-card"><h3>📊 Экологическая отчетность</h3><p>Подготовка всей необходимой документации в соответствии с законодательством</p><ul style="text-align: left; margin-top: 15px;"><li>Декларации и отчеты</li><li>Разрешительная документация</li><li>Экологический паспорт</li><li>Отчеты по НВОС</li></ul></div>
+                    <div class="service-card"><h3>🔬 Лабораторные исследования</h3><p>Проведение анализов и испытаний в аккредитованной лаборатории</p><ul style="text-align: left; margin-top: 15px;"><li>Химический анализ</li><li>Бактериологические исследования</li><li>Радиологический контроль</li><li>Токсикологическая оценка</li></ul></div>
+                    <div class="service-card"><h3>🏭 Промышленная экология</h3><p>Оптимизация производственных процессов для снижения экологической нагрузки</p><ul style="text-align: left; margin-top: 15px;"><li>Очистные сооружения</li><li>Утилизация отходов</li><li>Энергоэффективность</li><li>Зеленые технологии</li></ul></div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;"><a href="#" class="btn btn-secondary nav-link" data-page="contacts">Получить консультацию</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="expertise" class="page">
+        <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+            <div class="container">
+                <h1>Техническая экспертиза</h1>
+                <p>Профессиональная оценка и анализ промышленных объектов</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="page-content">
+                <div class="page-header"><h2>Экспертные услуги</h2><p>Комплексная техническая экспертиза промышленных предприятий и объектов</p></div>
+                <div class="features-grid">
+                    <div class="feature-card"><h3>🔍 Визуальный осмотр</h3><p>Детальный осмотр объектов с фиксацией текущего состояния</p></div>
+                    <div class="feature-card"><h3>📐 Инструментальные измерения</h3><p>Точные замеры параметров с использованием сертифицированного оборудования</p></div>
+                    <div class="feature-card"><h3>📋 Лабораторный анализ</h3><p>Исследование проб и образцов в аккредитованной лаборатории</p></div>
+                    <div class="feature-card"><h3>📊 Анализ документации</h3><p>Изучение проектной и технической документации объекта</p></div>
+                </div>
+                <div class="about-section">
+                    <h3>Этапы проведения экспертизы</h3>
+                    <ol style="margin-left: 20px; margin-top: 20px;">
+                        <li><strong>Подготовительный этап:</strong> Сбор исходных данных, изучение документации</li>
+                        <li><strong>Полевые исследования:</strong> Визуальный осмотр, инструментальные измерения</li>
+                        <li><strong>Лабораторные исследования:</strong> Анализ отобранных проб и образцов</li>
+                        <li><strong>Камеральная обработка:</strong> Анализ полученных данных, расчеты</li>
+                        <li><strong>Подготовка заключения:</strong> Формирование итогового экспертного заключения</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="about" class="page">
+        <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+            <div class="container">
+                <h1>О компании</h1>
+                <p>Наша миссия, ценности и история</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="page-content">
+                <div class="page-header"><h2>ЭКО КРСК - лидер в области экологических технологий</h2></div>
+                <div class="main-content">
+                    <div>
+                        <div class="about-section"><h3>🎯 Наша миссия</h3><p>Создание устойчивой экологической инфраструктуры для будущих поколений через внедрение инновационных технологий и профессиональных решений.</p></div>
+                        <div class="about-section"><h3>⭐ Наши ценности</h3><ul style="margin-left: 20px; margin-top: 15px;"><li><strong>Профессионализм:</strong> Высококвалифицированные специалисты с многолетним опытом</li><li><strong>Инновации:</strong> Постоянное внедрение передовых технологий и методик</li><li><strong>Ответственность:</strong> Полная ответственность за качество предоставляемых услуг</li><li><strong>Устойчивость:</strong> Ориентация на долгосрочные экологически устойчивые решения</li></ul></div>
+                    </div>
+                    <div>
+                        <div class="about-section"><h3>📈 Наши достижения</h3><ul style="margin-left: 20px; margin-top: 15px;"><li>Более 150 реализованных проектов</li><li>20+ патентов и сертификатов</li><li>Партнерство с ведущими научными институтами</li><li>Международное признание</li></ul></div>
+                        <div class="about-section"><h3>🤝 Партнеры</h3><p>Мы сотрудничаем с ведущими российскими и международными компаниями в области экологии и промышленности.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contacts" class="page">
+        <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+            <div class="container">
+                <h1>Контакты</h1>
+                <p>Свяжитесь с нами для консультации</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="page-content">
+                <div class="contact-grid">
+                    <div>
+                        <h2>📞 Контактная информация</h2>
+                        <div style="margin-top: 30px;">
+                            <p><strong>Адрес:</strong> г. Красноярск, ул. Экологическая, 15</p>
+                            <p><strong>Телефон:</strong> 8 (999) 999-99-99</p>
+                            <p><strong>Email:</strong> eco-krsk@example.ru</p>
+                            <p><strong>Режим работы:</strong> Пн-Пт: 9:00-18:00</p>
+                        </div>
+                        <div style="margin-top: 30px;">
+                            <h3>Отдел продаж</h3>
+                            <p>📧 sales@eco-krsk.ru</p>
+                            <p>📞 8 (999) 888-77-66</p>
+                        </div>
+                        <div style="margin-top: 30px;">
+                            <h3>Техническая поддержка</h3>
+                            <p>📧 support@eco-krsk.ru</p>
+                            <p>📞 8 (999) 777-66-55</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>📍 Мы на карте</h2>
+                        <div class="map-placeholder">🗺️ Карта расположения офиса</div>
+                        <div style="margin-top: 30px;">
+                            <h3>💬 Форма обратной связи</h3>
+                            <form class="question-form" style="margin-top: 20px;">
+                                <input type="text" placeholder="Ваше имя" required>
+                                <input type="email" placeholder="Ваш email" required>
+                                <input type="tel" placeholder="Ваш телефон">
+                                <textarea placeholder="Ваше сообщение" required></textarea>
+                                <button type="submit" class="btn">Отправить сообщение</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ЭКО КРСК</h3>
+                    <p>Инновационные экологические решения</p>
+                </div>
+                <div class="footer-contact">
+                    <p>📞 8 (999) 999-99-99</p>
+                    <p>✉️ eco-krsk@example.ru</p>
+                    <p>📍 г. Красноярск, ул. Экологическая, 15</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2020 - 2025 - ЭКО КРСК. Все права защищены.</p>
+                <p>Создаем будущее, в котором хочется жить!</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const colors = ['#4caf50', '#8bc34a', '#cddc39', '#2e7d32'];
+            for (let i = 0; i < 20; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                const size = Math.random() * 100 + 20;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.background = `radial-gradient(circle, ${color}40, transparent)`;
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(element);
+            }
+        }
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    navLinks.forEach(nl => nl.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById(targetPage).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        }
+        function setupForms() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Отправка...';
+                    submitBtn.disabled = true;
+                    setTimeout(() => {
+                        alert('🎉 Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+                        this.reset();
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                });
+            });
+        }
+        function setupAnimations() {
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.about-section, .services-section, .question-section, .page-content, .service-card, .feature-card').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.6s ease';
+                observer.observe(section);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingElements();
+            setupNavigation();
+            setupForms();
+            setupAnimations();
+        });
+    </script>
+</body>
+</html>
